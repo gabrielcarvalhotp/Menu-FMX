@@ -1,0 +1,130 @@
+unit App.Utils;
+
+interface
+
+uses
+  App.Utils.Interfaces,
+  FMX.Types,
+  FMX.Objects,
+  FMX.Forms,
+  System.Generics.Collections;
+
+type
+  TUtils = class(TInterfacedObject, IUtils)
+  private
+  public
+    constructor Create;
+    destructor Destroy; override;
+    class function New: IUtils;
+    function ResourceImage(Resource: String; Image: TImage): IUtils;
+    function BuildButtonsMenu(AFMXObject: TFmxObject): IUtils;
+    function BuildButtonsMenuItems(AFMXObject: TFmxObject; AEntity: TClass): IUtils;
+  end;
+
+implementation
+
+{ TUtils }
+
+uses
+  System.SysUtils,
+  System.Classes,
+  System.Types,
+  System.UITypes,
+  FMX.StdCtrls,
+  FMX.Controls,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.Layouts,
+  System.Rtti,
+  App.View.Menu,
+  App.View.Component.Button.Menu,
+  App.View.Menu.Attribute,
+  App.View.Component.Button.Menu.Items;
+
+function TUtils.BuildButtonsMenu(AFMXObject: TFmxObject): IUtils;
+var
+  ctxContext: TRttiContext;
+  typRtti: TRttiType;
+  prpRtti: TRttiProperty;
+begin
+  ctxContext := TRttiContext.Create;
+  try
+    typRtti := ctxContext.GetType(System.TypeInfo(TViewMenu));
+    for prpRtti in typRtti.GetProperties do
+    begin
+      var ComponentButtonMenu := TViewComponentButtonMenu.Create(AFMXObject);
+      with ComponentButtonMenu do
+      begin
+        Name := prpRtti.GetAttribute<MenuButton>.Name;
+        Parent := AFMXObject;
+        Align := TAlignLayout.Top;
+        Caption := prpRtti.GetAttribute<MenuButton>.Caption;
+        Resource := prpRtti.GetAttribute<MenuButton>.Resorce;
+        ResourceColor := prpRtti.GetAttribute<MenuButton>.ResorceColor;
+        Render;
+      end;
+      AFMXObject.AddObject(ComponentButtonMenu);
+    end;
+  finally
+    ctxContext.Free;
+  end;
+end;
+
+function TUtils.BuildButtonsMenuItems(AFMXObject: TFmxObject; AEntity: TClass): IUtils;
+var
+  ctxContext: TRttiContext;
+  typRtti: TRttiType;
+  prpRtti: TRttiProperty;
+begin
+  ctxContext := TRttiContext.Create;
+  try
+    typRtti := ctxContext.GetType(AEntity);
+    for prpRtti in typRtti.GetProperties do
+    begin
+      var LComponentButtonMenuItems := TViewComponentButtonMenuItems.Create(AFMXObject);
+      with LComponentButtonMenuItems do
+      begin
+        Name := prpRtti.GetAttribute<MenuButton>.Name;
+        Parent := AFMXObject;
+        Align := TAlignLayout.Bottom;
+        Align := TAlignLayout.Top;
+        Caption := prpRtti.GetAttribute<MenuButton>.Caption;
+        Link := prpRtti.GetAttribute<MenuButton>.Link;
+        Render;
+      end;
+      AFMXObject.AddObject(LComponentButtonMenuItems);
+    end;
+  finally
+    ctxContext.Free;
+  end;
+
+end;
+
+constructor TUtils.Create;
+begin
+
+end;
+
+destructor TUtils.Destroy;
+begin
+  inherited;
+end;
+
+class function TUtils.New: IUtils;
+begin
+  Result := Self.Create;
+end;
+
+function TUtils.ResourceImage(Resource: String; Image: TImage): IUtils;
+begin
+  Result := Self;
+  var
+  lResource := TResourceStream.Create(HInstance, Resource, RT_RCDATA);
+  try
+    Image.Bitmap.LoadFromStream(lResource);
+  finally
+    lResource.DisposeOf;
+  end;
+end;
+
+end.

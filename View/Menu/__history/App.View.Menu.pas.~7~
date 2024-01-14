@@ -1,0 +1,36 @@
+unit App.View.Menu;
+
+interface
+
+uses
+  App.View.Menu.Attribute;
+
+type
+  TViewMenu = class
+  private
+    FCadastro: string;
+    { private }
+  public
+    { public }
+    constructor Create;
+    destructor Destroy; override;
+
+    property Cadastro: string read FCadastro write FCadastro;
+  end;
+
+implementation
+
+{ TViewMenu }
+
+constructor TViewMenu.Create;
+begin
+
+end;
+
+destructor TViewMenu.Destroy;
+begin
+  inherited;
+
+end;
+
+end.

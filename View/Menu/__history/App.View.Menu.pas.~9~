@@ -1,0 +1,37 @@
+unit App.View.Menu;
+
+interface
+
+uses
+  App.View.Menu.Attribute;
+
+type
+  TViewMenu = class
+  private
+    FCadastro: string;
+    FHome: string;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    [MenuButton('BtnHome', 'Home', 'Icon_Home')]
+    property Home: string read FHome write FHome;
+    [MenuButton('BtnCadastro', 'Cadastro', 'Icon_Cadastro')]
+    property Cadastro: string read FCadastro write FCadastro;
+  end;
+
+implementation
+
+{ TViewMenu }
+
+constructor TViewMenu.Create;
+begin
+
+end;
+
+destructor TViewMenu.Destroy;
+begin
+  inherited;
+
+end;
+
+end.

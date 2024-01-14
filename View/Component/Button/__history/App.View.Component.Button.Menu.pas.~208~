@@ -1,0 +1,168 @@
+unit App.View.Component.Button.Menu;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants,
+  FMX.Types,
+  FMX.Graphics,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Dialogs,
+  FMX.StdCtrls,
+  FMX.Controls.Presentation,
+  FMX.Objects,
+  FMX.Layouts,
+  System.Generics.Collections;
+
+type
+  TViewComponentButtonMenu = class(TFrame)
+    lytContainer: TLayout;
+    LytContainerButton: TLayout;
+    RecButton: TRectangle;
+    Layout2: TLayout;
+    LytDescricao: TLayout;
+    lblDescricao: TLabel;
+    lytImageInfo: TLayout;
+    ImageInfo: TImage;
+    lytImageMenu: TLayout;
+    ImageMenu: TImage;
+    LytButton: TLayout;
+    LytLine: TLayout;
+    RecLine: TRectangle;
+    LytMenuItens: TLayout;
+    procedure FrameResize(Sender: TObject);
+    procedure LytButtonMouseEnter(Sender: TObject);
+    procedure LytButtonMouseLeave(Sender: TObject);
+    procedure LytButtonClick(Sender: TObject);
+  private
+    FOpened: Boolean;
+    FHeight: Integer;
+    FCaption: string;
+    FResource: string;
+    FResourceColor: string;
+    FLink: string;
+    FList: TDictionary<string, TClass>;
+    procedure CallSubMenu;
+    procedure Clear;
+  public
+    constructor Create(AOwner: TComponent); override;
+    property Caption: string read FCaption write FCaption;
+    property Resource: string read FResource write FResource;
+    property ResourceColor: string read FResourceColor write FResourceColor;
+    property Link: string read FLink write FLink;
+    procedure Render;
+  end;
+
+implementation
+
+uses
+  Router4D,
+  App.Utils,
+  App.Utils.Colors,
+  App.View.Menu.Items.Cadastro;
+
+const
+  HEIGTH = 44;
+
+{$R *.fmx}
+  { TViewComponentButtonMenu }
+
+procedure TViewComponentButtonMenu.CallSubMenu;
+begin
+  FOpened := not FOpened;
+  LytMenuItens.Visible := FOpened;
+  RecLine.Visible := FOpened;
+  if FOpened then
+  begin
+    RecButton.Fill.Color := Tints_50;
+    Self.AnimateFloat('Height', (LytContainerButton.Height + (LytMenuItens.ComponentCount * 150)), 0.2, TAnimationType.&In,
+      TInterpolationType.Linear);
+    ImageMenu.AnimateFloat('RotationAngle', 180, 0.2, TAnimationType.&In, TInterpolationType.Linear);
+    lblDescricao.TextSettings.FontColor := Tints_10;
+    TUtils.New.ResourceImage(FResourceColor, ImageInfo)
+  end
+  else
+  begin
+    Clear;
+    RecButton.Fill.Color := Tints_60;
+  end;
+end;
+
+procedure TViewComponentButtonMenu.Clear;
+begin
+  RecButton.Fill.Color := Color_White;
+  Self.Height := HEIGTH;
+  Self.AnimateFloat('Height', HEIGTH, 0.2, TAnimationType.&In, TInterpolationType.Linear);
+  ImageMenu.AnimateFloat('RotationAngle', 0, 0.2, TAnimationType.&In, TInterpolationType.Linear);
+  lblDescricao.TextSettings.FontColor := $8C8C8C8C;
+  TUtils.New.ResourceImage(FResource, ImageInfo);
+  RecLine.Visible := False;
+  LytMenuItens.Visible := False;
+  FOpened := False;
+end;
+
+constructor TViewComponentButtonMenu.Create(AOwner: TComponent);
+begin
+  inherited;
+  FList := TDictionary<string, TClass>.Create;
+  FList.Add('BtnCadastro', TViewMenuItensCadastro);
+  RecLine.Fill.Color := Tints_10;
+  RecLine.Visible := False;
+end;
+
+procedure TViewComponentButtonMenu.FrameResize(Sender: TObject);
+begin
+  lytImageMenu.Visible := Self.Width > 170;
+end;
+
+procedure TViewComponentButtonMenu.LytButtonClick(Sender: TObject);
+begin
+  for var i := 0 to Pred(TFmxObject(Self.Owner).ComponentCount) do
+    if TFmxObject(Self.Owner).Components[i].Name <> Self.Name then
+      TViewComponentButtonMenu(TFmxObject(Self.Owner).Components[i]).Clear;
+  CallSubMenu;
+  if not FLink.IsEmpty then
+    TRouter4D.Link.&To(FLink);
+end;
+
+procedure TViewComponentButtonMenu.LytButtonMouseEnter(Sender: TObject);
+begin
+  if not FOpened then
+    RecButton.Fill.Color := Tints_60;
+end;
+
+procedure TViewComponentButtonMenu.LytButtonMouseLeave(Sender: TObject);
+begin
+  if not FOpened then
+    RecButton.Fill.Color := Color_White;
+end;
+
+procedure TViewComponentButtonMenu.Render;
+begin
+  lblDescricao.Text := FCaption;
+  TUtils.New.ResourceImage(FResource, ImageInfo).ResourceImage('Icon_Seta_Cima', ImageMenu);
+  FHeight := 0;
+  if Self.Name = 'BtnHome' then
+    CallSubMenu;
+  TRouter4D
+    .SideBar
+      .Name(lblDescricao.Text)
+      .MainContainer(LytMenuItens)
+      .FontSize(15)
+      .FontColor(Tints_90)
+      .ItemHeigth(44)
+    .RenderToListBox;
+
+
+//  if FList.TryGetValue(Self.Name, Instance) then
+//    TUtils.New.BuildButtonsMenuItems(LytMenuItens, Instance)
+//  else
+//    ImageMenu.Visible := False;
+end;
+
+end.

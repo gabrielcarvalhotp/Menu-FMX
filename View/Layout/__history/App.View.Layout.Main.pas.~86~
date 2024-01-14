@@ -1,0 +1,99 @@
+unit App.View.Layout.Main;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants,
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.Layouts,
+  Router4D.Interfaces,
+  FMX.Controls.Presentation,
+  FMX.MultiView,
+  FMX.Objects,
+  FMX.StdCtrls;
+
+type
+  TViewLayoutMain = class(TForm, iRouter4DComponent)
+    LytContainer: TLayout;
+    MultiView1: TMultiView;
+    LytSideBar: TLayout;
+    LytHeader: TLayout;
+    RecHeader: TRectangle;
+    Layout1: TLayout;
+    Layout2: TLayout;
+    Label1: TLabel;
+    Layout3: TLayout;
+    ImageMenu: TImage;
+    LytBody: TLayout;
+    procedure MultiView1StartHiding(Sender: TObject);
+    procedure MultiView1StartShowing(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    procedure CreateSidebar;
+  public
+    function Render: TFMXObject;
+    procedure UnRender;
+  end;
+
+var
+  ViewLayoutMain: TViewLayoutMain;
+
+implementation
+
+uses
+  Router4D,
+  App.Utils,
+  App.View.Component.Sidebar,
+  App.Utils.Colors,
+  App.View.Page.Home;
+
+{$R *.fmx}
+{ TForm1 }
+
+procedure TViewLayoutMain.CreateSidebar;
+begin
+  var LComponentSidebar := TViewComponentSidebar.Create(Self);
+  with LComponentSidebar do
+    Parent := LytSideBar;
+   LytSideBar.AddObject(LComponentSidebar);
+end;
+
+procedure TViewLayoutMain.FormCreate(Sender: TObject);
+begin
+  RecHeader.Fill.Color := Color_Main;
+end;
+
+procedure TViewLayoutMain.MultiView1StartHiding(Sender: TObject);
+begin
+  ImageMenu.AnimateFloat('RotationAngle', 180, 0.2, TAnimationType.&In, TInterpolationType.Linear);
+end;
+
+procedure TViewLayoutMain.MultiView1StartShowing(Sender: TObject);
+begin
+  ImageMenu.AnimateFloat('RotationAngle', 90, 0.2, TAnimationType.&In, TInterpolationType.Linear);
+end;
+
+function TViewLayoutMain.Render: TFMXObject;
+begin
+  Result := LytContainer;
+  TUtils.New.ResourceImage('Icon_Menu', ImageMenu);
+  CreateSidebar;
+  TRouter4D.Render<TViewPageHome>.SetElement(LytBody, LytBody);
+
+  TRouter4D.SideBar.LinkContainer(LytBody);
+end;
+
+procedure TViewLayoutMain.UnRender;
+begin
+
+end;
+
+end.

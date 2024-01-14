@@ -1,0 +1,38 @@
+unit App.View.Page.Cadastro.Clientes;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants,
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.Controls.Presentation,
+  FMX.StdCtrls,
+  FMX.Layouts;
+
+type
+  TViewPageCadastroClientes = class(TForm)
+    LytContainer: TLayout;
+    Layout1: TLayout;
+    Label1: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ViewPageCadastroClientes: TViewPageCadastroClientes;
+
+implementation
+
+{$R *.fmx}
+
+end.

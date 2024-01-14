@@ -1,0 +1,44 @@
+object ViewComponentButtonMenuItems: TViewComponentButtonMenuItems
+  Size.Width = 316.000000000000000000
+  Size.Height = 44.000000000000000000
+  Size.PlatformDefault = False
+  object LytContainer: TLayout
+    Align = Client
+    Size.Width = 316.000000000000000000
+    Size.Height = 44.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object RecButton: TRectangle
+      Align = Client
+      Fill.Color = claWhite
+      Size.Width = 316.000000000000000000
+      Size.Height = 44.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object Layout1: TLayout
+      Align = Client
+      Padding.Left = 10.000000000000000000
+      Padding.Top = 10.000000000000000000
+      Padding.Right = 10.000000000000000000
+      Padding.Bottom = 10.000000000000000000
+      Margins.Left = 44.000000000000000000
+      Size.Width = 272.000000000000000000
+      Size.Height = 44.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object SpeedButton1: TSpeedButton
+        Align = Client
+        StyledSettings = [Family]
+        Size.Width = 252.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'SpeedButton1'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.FontColor = x8C8C8C8C
+        TextSettings.HorzAlign = Leading
+      end
+    end
+  end
+end

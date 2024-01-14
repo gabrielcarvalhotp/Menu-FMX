@@ -1,0 +1,35 @@
+unit App.Utils.Colors;
+
+interface
+
+const
+  Color_Main = $FF198d5f;
+
+  Tints_100 = $FFD1E8DF;
+  Tints_90 = $FFe8f4ef;
+  Tints_80 = $FFbaddcf;
+  Tints_70 = $FFbaddcf;
+  Tints_60 = $FFa3d1bf;
+  Tints_50 = $FF8cc6af;
+  Tints_40 = $FF75bb9f;
+  Tints_30 = $FF5eaf8f;
+  Tints_20 = $FF47a47f;
+  Tints_10 = $FF30986f;
+
+
+
+  Shades_100 = $FFD1E8DF;
+  Shades_90 = $FFD1E8DF;
+  Shades_80 = $FFD1E8DF;
+  Shades_70 = $FFD1E8DF;
+  Shades_60 = $FFD1E8DF;
+  Shades_50 = $FFD1E8DF;
+  Shades_40 = $FFD1E8DF;
+  Shades_30 = $FFD1E8DF;
+  Shades_20 = $FFD1E8DF;
+  Shades_10 = $FFD1E8DF;
+  Shades_0 = $FFD1E8DF;
+
+implementation
+
+end.

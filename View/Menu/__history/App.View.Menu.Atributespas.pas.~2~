@@ -1,0 +1,21 @@
+unit App.View.Menu.Atributespas;
+
+interface
+type
+  Caption = class(TCustomAttribute)
+  private
+    FCaption: string;
+  public
+    constructor Create(AValue: string);
+  end;
+
+implementation
+
+{ Caption }
+
+constructor Caption.Create(AValue: string);
+begin
+  FCaption := AValue;
+end;
+
+end.

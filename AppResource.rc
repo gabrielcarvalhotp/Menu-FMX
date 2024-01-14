@@ -1,0 +1,8 @@
+Icon_Menu RCDATA "Accets\\icons8-cardápio-34.png"
+Icon_Home RCDATA "Accets\\icons8-página-inicial-34.png"
+Icon_Cadastro RCDATA "Accets\\icons8-formato-34.png"
+Icon_Seta_Baixo RCDATA "Accets\\icons8-seta-para-expandir-14.png"
+Icon_Seta_Cima RCDATA "Accets\\icons8-seta-para-recolher-24.png"
+PngImage_1 RCDATA "Accets\\icons8-seta-para-recolher-14.png"
+Icon_Cadastro_Color RCDATA "Accets\\icons8-formato-Color-34.png"
+Icon_Home_Color RCDATA "Accets\\icons8-pagina-inicial-Color-34.png"

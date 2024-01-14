@@ -1,0 +1,49 @@
+unit App.View.Page.Home;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants,
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.Layouts,
+  FMX.Controls.Presentation,
+  FMX.StdCtrls,
+  Router4D.Interfaces;
+
+type
+  TViewPageHome = class(TForm, iRouter4DComponent)
+    LytContainer: TLayout;
+    Layout1: TLayout;
+    Label1: TLabel;
+  private
+    { Private declarations }
+  public
+    function Render: TFMXObject;
+    procedure UnRender;
+  end;
+
+implementation
+
+{$R *.fmx}
+
+{ TViewPageHome }
+
+function TViewPageHome.Render: TFMXObject;
+begin
+  Result := LytContainer;
+end;
+
+procedure TViewPageHome.UnRender;
+begin
+
+end;
+
+end.

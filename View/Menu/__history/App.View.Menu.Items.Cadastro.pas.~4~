@@ -1,0 +1,15 @@
+unit App.View.Menu.Items.Cadastro;
+
+interface
+
+type
+  TClasse = class
+  private
+  public
+    constructor Create;
+    destructor Destroy; override;
+  end;
+
+implementation
+
+end.

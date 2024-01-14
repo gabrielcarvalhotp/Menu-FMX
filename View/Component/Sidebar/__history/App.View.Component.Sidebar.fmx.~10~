@@ -1,0 +1,35 @@
+object ViewComponentSidebar: TViewComponentSidebar
+  Align = Client
+  Size.Width = 246.000000000000000000
+  Size.Height = 751.000000000000000000
+  Size.PlatformDefault = False
+  object Rectangle1: TRectangle
+    Align = Client
+    Fill.Color = claWhite
+    Size.Width = 246.000000000000000000
+    Size.Height = 751.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+  end
+  object LytContainer: TLayout
+    Align = Client
+    Padding.Left = 8.000000000000000000
+    Padding.Top = 8.000000000000000000
+    Padding.Right = 8.000000000000000000
+    Padding.Bottom = 8.000000000000000000
+    Size.Width = 246.000000000000000000
+    Size.Height = 751.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Label1: TLabel
+      Align = Top
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 230.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Funcionou carai'
+      TabOrder = 0
+    end
+  end
+end

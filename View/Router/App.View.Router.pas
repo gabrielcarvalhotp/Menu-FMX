@@ -1,0 +1,52 @@
+unit App.View.Router;
+
+interface
+
+type
+  TRouters = class
+  private
+  public
+    constructor Create;
+    destructor Destroy; override;
+  end;
+
+var
+  Routers: TRouters;
+
+implementation
+
+uses
+  Router4D,
+  App.View.Layout.Main,
+  App.View.Page.Home,
+  App.View.Page.Cadastro.Usuarios,
+  App.View.Page.Cadastro.Fornecedores,
+  App.View.Page.Cadastro.Funcionarios,
+  App.View.Page.Cadastro.Clientes;
+
+{ TRouters }
+
+constructor TRouters.Create;
+begin
+  TRouter4D.Switch
+    .Router('Layout_Main', TViewLayoutMain)
+    .Router('Page_Home', TViewPageHome)
+    .Router('Page_Cadastro_Clientes', TViewPageCadastroClientes)
+    .Router('Page_Cadastro_Funcionarios', TViewPageCadastroFuncionarios)
+    .Router('Page_Cadastro_Fornecedores', TViewPageCadastroFornecedores)
+    .Router('Page_Cadastro_Usuarios', TViewPageCadastroUsuarios)
+end;
+
+destructor TRouters.Destroy;
+begin
+  inherited;
+
+end;
+
+initialization
+  Routers := TRouters.Create;
+
+finalization
+  Routers.Free;
+
+end.

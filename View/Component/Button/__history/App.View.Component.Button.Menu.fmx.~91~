@@ -1,0 +1,135 @@
+object ViewComponentButtonMenu: TViewComponentButtonMenu
+  Size.Width = 355.000000000000000000
+  Size.Height = 140.000000000000000000
+  Size.PlatformDefault = False
+  OnResize = FrameResize
+  object lytContainer: TLayout
+    Align = Client
+    Size.Width = 355.000000000000000000
+    Size.Height = 140.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object LytContainerButton: TLayout
+      Align = Top
+      Size.Width = 355.000000000000000000
+      Size.Height = 44.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object RecButton: TRectangle
+        Align = Contents
+        Fill.Color = claWhite
+        Size.Width = 355.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+      end
+      object Layout2: TLayout
+        Align = Client
+        Size.Width = 355.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object LytDescricao: TLayout
+          Align = Client
+          Padding.Left = 10.000000000000000000
+          Padding.Top = 10.000000000000000000
+          Padding.Right = 10.000000000000000000
+          Padding.Bottom = 10.000000000000000000
+          Size.Width = 262.000000000000000000
+          Size.Height = 44.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object lblDescricao: TLabel
+            Align = Client
+            StyledSettings = [Family]
+            Size.Width = 242.000000000000000000
+            Size.Height = 24.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TextSettings.FontColor = x8C8C8C8C
+            Text = 'Teste de descricao'
+            TabOrder = 0
+          end
+        end
+        object lytImageInfo: TLayout
+          Align = Left
+          Padding.Left = 5.000000000000000000
+          Padding.Top = 5.000000000000000000
+          Padding.Right = 5.000000000000000000
+          Padding.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Size.Width = 44.000000000000000000
+          Size.Height = 44.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object ImageInfo: TImage
+            MultiResBitmap = <
+              item
+              end>
+            Align = Client
+            Size.Width = 34.000000000000000000
+            Size.Height = 34.000000000000000000
+            Size.PlatformDefault = False
+            WrapMode = Center
+          end
+        end
+        object lytImageMenu: TLayout
+          Align = Right
+          Padding.Left = 10.000000000000000000
+          Padding.Top = 10.000000000000000000
+          Padding.Right = 10.000000000000000000
+          Padding.Bottom = 10.000000000000000000
+          Position.X = 311.000000000000000000
+          Size.Width = 44.000000000000000000
+          Size.Height = 44.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          object ImageMenu: TImage
+            MultiResBitmap = <
+              item
+              end>
+            Align = Client
+            Size.Width = 24.000000000000000000
+            Size.Height = 24.000000000000000000
+            Size.PlatformDefault = False
+            WrapMode = Center
+          end
+        end
+        object LytLine: TLayout
+          Align = Left
+          Size.Width = 5.000000000000000000
+          Size.Height = 44.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          object RecLine: TRectangle
+            Align = Client
+            Fill.Color = claWhite
+            Size.Width = 5.000000000000000000
+            Size.Height = 44.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+          end
+        end
+      end
+      object LytButton: TLayout
+        Align = Contents
+        HitTest = True
+        Size.Width = 355.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        OnClick = LytButtonClick
+        OnMouseEnter = LytButtonMouseEnter
+        OnMouseLeave = LytButtonMouseLeave
+      end
+    end
+    object LytMenuItens: TLayout
+      Align = Client
+      Size.Width = 355.000000000000000000
+      Size.Height = 96.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+    end
+  end
+end
